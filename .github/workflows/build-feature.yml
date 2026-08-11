@@ -1,0 +1,35 @@
+name: Build Feature Branch
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linting
+        run: npm run lint --if-present
+
+      - name: Run tests
+        run: npm run test --if-present -- --watch=false --browsers=ChromeHeadless
+
+      - name: Build Angular project
+        run: npm run build
+
+      - name: Build completed
+        run: echo "Build completed successfully."
