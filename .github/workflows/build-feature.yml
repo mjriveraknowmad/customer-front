@@ -27,6 +27,6 @@ jobs:
 
       - name: Test And Build Angular project
         run: |
-          ng test -- --watch=false
-          ng build --configuration=production
+          ng test --watch=false
+          ng build
           echo "Build completed successfully."
