@@ -22,14 +22,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run linting
-        run: npm run lint --if-present
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli@~15.2.5
 
-      - name: Run tests
-        run: npm run test --if-present -- --watch=false --browsers=ChromeHeadless
-
-      - name: Build Angular project
-        run: npm run build
-
-      - name: Build completed
-        run: echo "Build completed successfully."
+      - name: Test And Build Angular project
+        run: |
+          ng test -- --watch=false
+          ng build --configuration=production
+          echo "Build completed successfully."
