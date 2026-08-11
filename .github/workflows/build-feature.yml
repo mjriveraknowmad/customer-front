@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -25,7 +25,8 @@ jobs:
       - name: Install Angular CLI
         run: npm install -g @angular/cli@~15.2.5
 
-      - name: Build Angular project
+      - name: Test And Build Angular project
         run: |
+          ng test --watch=false
           ng build
           echo "Build completed successfully."
